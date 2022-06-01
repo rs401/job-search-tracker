@@ -1,0 +1,61 @@
+<mat-card class="newAppCard">
+  <mat-card-title>Add New Application</mat-card-title>
+  <mat-card-content>
+    <div>
+      <form
+        autocomplete="off"
+        [formGroup]="createForm"
+        (ngSubmit)="onCreate(createForm.value)"
+      >
+        <div>
+          <mat-form-field appearance="fill" class="newAppForm">
+            <mat-label>Company: </mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="company"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="newAppForm">
+            <mat-label>Position: </mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="position"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="newAppForm">
+            <mat-label>Job Post URL: </mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="jobPostUrl"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="newAppForm">
+            <mat-label>Description: </mat-label>
+            <textarea
+              matInput
+              rows="10"
+              type="textarea"
+              formControlName="description"
+              autocomplete="off"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

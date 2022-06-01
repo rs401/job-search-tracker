@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'job-search-tracker';
+  
+  logme() {
+    console.log("clicked...");
+    
+  }
 }

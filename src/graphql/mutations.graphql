@@ -1,0 +1,49 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateApplication(
+  $input: CreateApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  createApplication(input: $input, condition: $condition) {
+    id
+    company
+    position
+    description
+    jobPostUrl
+    response
+    outcome
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateApplication(
+  $input: UpdateApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  updateApplication(input: $input, condition: $condition) {
+    id
+    company
+    position
+    description
+    jobPostUrl
+    response
+    outcome
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteApplication(
+  $input: DeleteApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  deleteApplication(input: $input, condition: $condition) {
+    id
+    company
+    position
+    description
+    jobPostUrl
+    response
+    outcome
+    createdAt
+    updatedAt
+  }
+}

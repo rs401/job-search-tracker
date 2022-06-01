@@ -1,0 +1,8 @@
+.appsFormCard {
+    margin: 2rem;
+}
+
+.appsForm {
+    display: flex;
+    flex-direction: column;
+}
