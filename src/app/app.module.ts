@@ -29,6 +29,7 @@ import { ApplicationsComponent } from './components/applications/applications.co
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { APIService } from './API.service';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { APIService } from './API.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgChartsModule
   ],
   providers: [
     APIService

@@ -24,41 +24,46 @@ export interface Application {
  * (including sorting, pagination, and filtering).
  */
 export class TableDataSource extends DataSource<Application> {
-  private subscription: Subscription | null = null;
+  private subscription: Subscription;
   private dataSubject: BehaviorSubject<Application[]> = new BehaviorSubject<Application[]>([]);
   private poop = this.dataSubject.asObservable();
-  data: Application[] = [];
+  // data: Application[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
+  set data(v: Application[]) { this.dataSubject.next(v); }
+  get data(): Application[] { return this.dataSubject.value; }
+
   constructor(private api: APIService) {
     super();
-    // this.fetchApps();
-    this.poop.subscribe((apps) => {
-      this.data = apps;
-    });
-    this.api.ListApplications().then((event) => {
-      this.dataSubject.next(event.items as Application[]);
-    });
+    this.fetchApps();
+    // this.poop.subscribe((apps) => {
+    //   this.data = apps;
+    // });
+    // this.api.ListApplications().then((event) => {
+    //   this.dataSubject.next(event.items as Application[]);
+    // });
 
-    // I need to move this to table component and pass it to this or something.
     this.subscription = <Subscription>(
       this.api.OnUpdateApplicationListener.subscribe((event: any) => {
         console.log("OnUpdateApplicationListener fired#########################");
         console.log("OnUpdateApplicationListener event:", event);
-        this.dataSubject.next(event.items as Application[]);
-        // this.fetchApps();
+        // event data is only the updated application, need to call api again
+        // this.api.ListApplications().then((event) => {
+        //   this.dataSubject.next(event.items as Application[]);
+        // });
+        this.fetchApps();
       })
     );
 
   }
 
-  // private fetchApps() {
-  //   console.log("fetchApps fired#########################");
-  //   this.api.ListApplications().then((event) => {
-  //     this.data = event.items as Application[];
-  //   });
-  // }
+  private fetchApps() {
+    console.log("fetchApps fired#########################");
+    this.api.ListApplications().then((event) => {
+      this.data = event.items as Application[];
+    });
+  }
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -82,7 +87,9 @@ export class TableDataSource extends DataSource<Application> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void {
+    this.subscription.unsubscribe();
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
