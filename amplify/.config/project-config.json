@@ -1,14 +1,14 @@
 {
-  "projectName": "jobsearchtracker",
+  "projectName": "jobtracker",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
-    "framework": "angular",
+    "framework": "react",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist/job-search-tracker",
+      "DistributionDir": "build",
       "BuildCommand": "npm run-script build",
-      "StartCommand": "ng serve"
+      "StartCommand": "npm run-script start"
     }
   },
   "providers": [

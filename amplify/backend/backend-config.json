@@ -1,6 +1,6 @@
 {
   "api": {
-    "jobsearchtracker": {
+    "jobtracker": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

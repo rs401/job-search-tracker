@@ -1,2 +1,2 @@
-# JobSearchTracker
+# Job Search Tracker
 
