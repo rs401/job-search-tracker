@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import { updateApplication } from "../graphql/mutations";
-import { getApplication } from "../graphql/queries";
+import { updateApplication } from "graphql/mutations";
+import { getApplication } from "graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 import { useParams, useNavigate } from "react-router-dom";
 

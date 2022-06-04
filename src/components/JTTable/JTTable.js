@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { API, graphqlOperation } from "aws-amplify";
-import { listApplications } from "../graphql/queries";
+import { listApplications } from "graphql/queries";
 import Moment from "react-moment";
 import { useNavigate } from "react-router-dom";
 

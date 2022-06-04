@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createApplication } from "../graphql/mutations";
+import { createApplication } from "graphql/mutations";
 import { API, graphqlOperation } from "aws-amplify";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";

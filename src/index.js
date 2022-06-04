@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./components/App";
+import App from "components/App/App";
 import Home from "./pages/Home";
-import NewAppForm from "./components/NewAppForm";
-import UpdateAppForm from "./components/UpdateAppForm";
+import NewAppForm from "components/NewAppForm/NewAppForm";
+import UpdateAppForm from "components/UpdateAppForm/UpdateAppForm";
 import reportWebVitals from "./reportWebVitals";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
