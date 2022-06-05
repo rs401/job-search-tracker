@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Table from "react-bootstrap/Table";
-import { API, graphqlOperation } from "aws-amplify";
-import { listApplications } from "graphql/queries";
 import Moment from "react-moment";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { allAppsState } from "recoil/AllAppsState";
 
 const JTTable = () => {
   const navigate = useNavigate();
-  const [apps, setApps] = useState([]);
+  const apps = useRecoilValue(allAppsState);
   const displayedColumns = [
     "Created At",
     "Company",
@@ -18,23 +18,6 @@ const JTTable = () => {
     "Outcome",
     "Updated At",
   ];
-
-  useEffect(() => {
-    fetchApplications();
-  }, []);
-
-  async function fetchApplications() {
-    try {
-      const appData = await API.graphql(graphqlOperation(listApplications));
-      const apps = appData.data.listApplications.items;
-      apps.sort((a,b) => {
-        return (a.createdAt > b.createdAt) ? 1: -1;
-      });
-      setApps(apps);
-    } catch (err) {
-      console.log("error fetching apps");
-    }
-  }
 
   function handleRowClick(id) {
     navigate(`/update/${id}`);
@@ -52,10 +35,13 @@ const JTTable = () => {
       <tbody>
         {apps.map((app) => {
           return (
-            <tr key={app.id} onClick={(e) => {
-              e.preventDefault();
-              handleRowClick(app.id)
-            }}>
+            <tr
+              key={app.id}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRowClick(app.id);
+              }}
+            >
               <td>
                 <Moment format="YYYY/MM/DD">{app.createdAt}</Moment>
               </td>
