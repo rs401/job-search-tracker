@@ -25,10 +25,10 @@ const UpdateAppForm = () => {
   const navigate = useNavigate();
   const outcomeKeys = ["SECOND_INTERVIEW", "ACCEPTED", "REJECTED", "GHOSTED"];
   const toggleResp = () => {
-    setResp(resp => !resp);
+    setResp((resp) => !resp);
     setInput("response", resp);
     console.log("resp", resp);
-  }
+  };
 
   function setInput(key, value) {
     console.log("key:", key, "value:", value);
@@ -36,22 +36,22 @@ const UpdateAppForm = () => {
   }
 
   useEffect(() => {
-    fetchApp();
-  }, );
-
-  async function fetchApp() {
-    try {
-      const appData = await API.graphql(
-        graphqlOperation(getApplication, { id: id })
-      );
-      const app = appData.data;
-      
-      setFormState(app.getApplication);
-      setResp(app.getApplication.response);
-    } catch (err) {
-      console.log("error: ", err);
+    async function fetchApp() {
+      try {
+        const appData = await API.graphql(
+          graphqlOperation(getApplication, { id: id })
+        );
+        const app = appData.data;
+  
+        setFormState(app.getApplication);
+        setResp(app.getApplication.response);
+      } catch (err) {
+        console.log("error: ", err);
+      }
     }
-  }
+    fetchApp();
+  }, [id]);
+
 
   async function updateApp() {
     try {
@@ -109,17 +109,18 @@ const UpdateAppForm = () => {
           />
         </Form.Group>
         <Form.Check
-          onChange={() => toggleResp()}
+          onChange={(event) => setInput("response", event.target.value)}
           type="switch"
-          checked={resp}
-          label={`Response? ${resp}`}
+          checked={formState.response}
+          label={`Response? ${formState.response}`}
         />
         <Form.Group className="mb-3">
           <Form.Label>Outcome</Form.Label>
           <Form.Select
-          onChange={(event) => setInput("outcome", event.target.value)}
-          value={formState.outcome}>
-            <option>---</option>
+            onChange={(event) => setInput("outcome", event.target.value)}
+            value={formState.outcome}
+          >
+            <option value="">---</option>
             {outcomeKeys.map((outcome) => {
               return (
                 <option key={outcome} value={outcome}>
